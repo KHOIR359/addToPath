@@ -1,0 +1,6 @@
+I assume you're not a newbie so i don't need to explain it in detail.
+
+1. Open Registry Editor and go to [Computer\HKEY_CLASSES_ROOT\Folder\shell]
+2. Create new key for the context menu name
+3. Create key and name it "command"
+4. add the default value with format "python.exe_location addtopath.py_location %0"

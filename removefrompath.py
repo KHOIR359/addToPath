@@ -2,17 +2,20 @@ import os
 from sys import argv
 from time import sleep
 
-path = os.popen('reg query HKEY_CURRENT_USER\Environment /v path').read(
-).replace("""HKEY_CURRENT_USER\Environment
-    path    REG_SZ    """, '').strip().split(';')
-path.remove(argv[1])
+path = os.popen('path').read().replace("PATH=", '').strip().split(';')
+
+try:
+  path.remove(argv[1])
+except:
+  print(argv[1] + ' Tidak Ditemukan')
+
 path = ';'.join(list(dict.fromkeys(path)))
 
-os.system('setx path "'+path+'"')
+os.system('setx path "'+path+';"')
 os.system('cls')
 
-print('Telah dihapus dari path')
-print('User Path Sekarang:')
+print('Successfully removed from path')
+print('Current user path:')
 i = 1
 for p in path.split(';'):
   if(p != ''):
